@@ -1,0 +1,17 @@
+import re
+
+f=input("Enter the file name: ")
+fh= open(f)
+
+total=[]
+
+se crea el ciclo para iterar por cada linea
+for line in fh:
+linea=line.rstrip() # se borran espacios
+numero=re.findall('([0-9]+)',line) # buscamos los numeros con mas de 1 o igual a un digito, usamos re.findall
+if len(numero) <1: # Si la cantidad de numeros almacenados es menor a 1 entonces saltamos la linea
+continue
+for nums in range(len(numero)): # este ciclo es para iteral por el rango de la cantidad de los numeros que convertiremos a int
+entero=int(numero[nums]) # convertimos los numeros almacenados a enteros para luego pasarlo a la lista
+total.append(entero) # se adjunta a una lista
+print(sum(total)) # se imprime la suma de la lista
