@@ -1,0 +1,13 @@
+url = input('Enter URL: ')
+position = int(input('Enter position: '))
+count = int(input('Enter count: '))
+
+for names in range(count):
+    html = urllib.request.urlopen(url).read() 
+    soup = BeautifulSoup(html, 'html.parser')
+    tags = soup('a')
+    url = tags[position-1].get('href', None) #como queremos obtener el nombre, debemos poner la posicion -1 , debido a el index de python
+    name = tags[position-1].contents[0] #igualmente como queremos el contenido , ponemos 0, ya que queremos el nombre 
+    print('Retrieving:', url)
+
+print('Last name in sequence:', name) 
