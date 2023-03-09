@@ -1,0 +1,16 @@
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import re
+
+url = input('Enter URL: ')
+word=input("Enter the word you wanna look for: ")
+
+html = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(html, 'html.parser')
+tags = soup('a')
+
+for searcher in tags:
+href=searcher.get("href")
+if href and re.search(word,href):
+print(searcher.contents[0])
+
